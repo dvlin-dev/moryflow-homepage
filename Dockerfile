@@ -16,20 +16,23 @@ RUN npm run build
 
 # 生产阶段 - 只包含必要的文件
 FROM base AS runner
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # 添加非 root 用户以提高安全性
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-USER nextjs
 
 # 从构建阶段复制必要的文件
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# 设置权限
+RUN chown -R nextjs:nodejs /app
+USER nextjs
 
 EXPOSE 3000
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
