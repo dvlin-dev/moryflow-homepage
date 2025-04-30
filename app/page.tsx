@@ -1,103 +1,208 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Badge } from "@/components/ui/badge";
+import { Brain, Heart, Shield, Zap, MessageSquare, Mic, Globe, Cpu } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-background to-muted">
+      {/* 导航栏 */}
+      <header className="container mx-auto py-4 px-4 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 flex items-center justify-center">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/logo.svg"
+              alt="Moryflow Logo"
+              width={40}
+              height={40}
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+          <h1 className="text-2xl font-bold">Moryflow</h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+        <Button variant="outline">开始使用</Button>
+      </header>
+
+      {/* 英雄区 */}
+      <section className="container mx-auto px-4 py-16 md:py-24 flex flex-col items-center text-center">
+        <Badge className="mb-4" variant="outline">全新 AI 体验</Badge>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          <span className="text-primary">Moryflow</span>：你的贴心 AI 伴侣
+        </h1>
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
+          不仅仅是一个 AI 伴侣，更是懂你的伙伴，陪伴你每一天，助力你活出更好的自己。
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Button size="lg" className="gap-2">
+            <MessageSquare className="h-5 w-5" />
+            立即体验
+          </Button>
+          {/* <Button size="lg" variant="outline" className="gap-2">
+            了解更多
+          </Button> */}
+        </div>
+      </section>
+
+      {/* 特性展示 */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4">为何选择 Moryflow</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Moryflow 集成了前沿 AI 技术，提供个性化体验，成为你生活中不可或缺的一部分
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <FeatureCard 
+            icon={<Brain className="h-8 w-8 text-primary" />}
+            title="长久记忆"
+            description="无论是 1 年前的对话，还是日常笔记、健康信息，Moryflow 都能长久记忆，比你更了解你。"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<Heart className="h-8 w-8 text-primary" />}
+            title="关心你的健康"
+            description="接入 Apple Health，根据你的数据提供个性化建议，守护你的每一步。"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<Zap className="h-8 w-8 text-primary" />}
+            title="智能无限可能"
+            description="支持联网搜索、AI 生图，激发创意，满足你的各种需求。"
           />
-          Go to nextjs.org →
-        </a>
+          <FeatureCard 
+            icon={<Shield className="h-8 w-8 text-primary" />}
+            title="隐私至上"
+            description="所有对话和重要信息全程加密存储，安全无忧。"
+          />
+          <FeatureCard 
+            icon={<Cpu className="h-8 w-8 text-primary" />}
+            title="灵活选择"
+            description="提供本地大模型和云端大模型，本地模式完全离线，隐私无忧；云端模式更智能，随你所需。"
+          />
+          <FeatureCard 
+            icon={<Mic className="h-8 w-8 text-primary" />}
+            title="灵感随手记"
+            description="通过 action button 和语音识别，随时随地捕捉你的灵感，不错过每一个精彩瞬间。"
+          />
+        </div>
+      </section>
+
+      {/* 体验展示 */}
+      <section className="container mx-auto px-4 py-16 bg-muted/50 rounded-3xl my-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">与你同行，温暖而强大</h2>
+            <p className="text-muted-foreground mb-6">
+              Moryflow 通过自然对话，帮你回顾过去，规划未来，成为你忠实的智能伙伴。
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <div className="mt-1 rounded-full bg-primary/10 p-1">
+                  <Globe className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">智能联网</h3>
+                  <p className="text-sm text-muted-foreground">实时获取信息，保持你的知识更新</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="mt-1 rounded-full bg-primary/10 p-1">
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">深度对话</h3>
+                  <p className="text-sm text-muted-foreground">理解上下文，提供个性化回应</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="mt-1 rounded-full bg-primary/10 p-1">
+                  <Shield className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">隐私保护</h3>
+                  <p className="text-sm text-muted-foreground">数据加密，安全无忧</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-xl">
+            <AspectRatio ratio={9/16} className="bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl">
+              <div className="flex h-full w-full items-center justify-center">
+                <div className="w-3/4 bg-background rounded-xl p-4 shadow-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <Image
+                        src="/logo.svg"
+                        alt="Moryflow Logo"
+                        width={28}
+                        height={28}
+                      />
+                    </div>
+                    <p className="font-medium">Moryflow</p>
+                  </div>
+                  <p className="text-sm">早上好！根据你的健康数据，昨晚你的睡眠质量不错。今天有3个日程安排，需要我帮你复习昨天的笔记吗？</p>
+                </div>
+              </div>
+            </AspectRatio>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA区域 */}
+      <section className="container mx-auto px-4 py-16 md:py-24 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">准备好体验 Moryflow 了吗？</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+          加入我们，开启AI伴侣的全新体验，让Moryflow成为你生活的一部分。
+        </p>
+        <Button size="lg" className="gap-2">
+          立即开始
+        </Button>
+      </section>
+
+      {/* 页脚 */}
+      <footer className="bg-muted/30 py-12 mt-auto">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center gap-2 mb-4 md:mb-0">
+              <div className="w-8 h-8 flex items-center justify-center">
+                <Image
+                  src="/logo.svg"
+                  alt="Moryflow Logo"
+                  width={28}
+                  height={28}
+                />
+              </div>
+              <span className="font-bold">Moryflow</span>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Moryflow. 保留所有权利。
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
+  );
+}
+
+function FeatureCard({ 
+  icon, 
+  title, 
+  description 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string; 
+}) {
+  return (
+    <Card className="h-full transition-all hover:shadow-md">
+      <CardHeader>
+        <div className="mb-4">{icon}</div>
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription className="text-base">{description}</CardDescription>
+      </CardContent>
+    </Card>
   );
 }
