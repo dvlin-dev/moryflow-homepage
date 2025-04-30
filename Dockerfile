@@ -4,8 +4,9 @@ WORKDIR /app
 
 # 依赖阶段 - 安装所有依赖
 FROM base AS deps
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml* ./
+RUN npm install -g pnpm
+RUN pnpm install
 
 # 构建阶段 - 构建应用
 FROM base AS builder
