@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <script defer src="https://um.dvlin.com/script.js" data-website-id="4dfb09e7-d316-4ebe-9bd5-1361f521aff6"></script>
+      <script defer src="https://umami.dvlin.com/script.js" data-website-id="892d16ee-aa61-4293-b420-2b30962116be"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
